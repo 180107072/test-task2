@@ -14,7 +14,7 @@ export function Sidebar({
     <div
       {...props}
       className={`w-56 min-w-[14rem] p-2 bg-dark-300 overflow-auto ${className}`}
-      style={{ height: "calc(100vh - 2.5rem)", ...style }}
+      style={{ height: "calc(100vh - 3.75rem)", ...style }}
     >
       {children}
     </div>

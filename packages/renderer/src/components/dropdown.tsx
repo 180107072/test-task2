@@ -43,7 +43,7 @@ export const DropdownMenu = ({
         isOpen
       )}
       <motion.div
-        className="absolute flex shadow shadow-black/20 flex-col top-11 w-56 h-fit text-sm gap-2 p-2 text-left  bg-dark-400  border-dark-300 border-4 rounded-lg"
+        className="absolute flex shadow shadow-black/20 flex-col top-16 w-56 h-fit text-sm gap-2 p-2 text-left  bg-dark-400  border-dark-300 border-4 rounded-lg"
         variants={drowdown}
       >
         {menu}

@@ -40,6 +40,14 @@ h1 {
   line-height: 1.1;
 }
 
+.frame {
+  -webkit-app-region: drag;
+}
+
+.frame > * {
+  -webkit-app-region: no-drag;
+}
+
 .default-scrollbar::-webkit-scrollbar-track {
   border-radius: 10px;
   background-color: #282b30;
@@ -85,7 +93,6 @@ h1 {
 .hidden-scrollbar::-webkit-scrollbar-thumb {
   display: none;
 }
-
 
 .rounded-button {
   border-radius: 30px;
