@@ -1,3 +1,4 @@
+import { isMac } from "#preload";
 import { motion } from "framer-motion";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { useDimensions } from "../hooks/useDimensions";
@@ -43,7 +44,8 @@ export const DropdownMenu = ({
         isOpen
       )}
       <motion.div
-        className="absolute flex shadow shadow-black/20 flex-col top-10 w-56 h-fit text-sm gap-2 p-2 text-left  bg-dark-400  border-dark-300 border-4 rounded-lg"
+        className="absolute flex shadow shadow-black/20 flex-col w-56 h-fit text-sm gap-2 p-2 text-left  bg-dark-400  border-dark-300 border-4 rounded-lg"
+        style={{ top: "10%" }}
         variants={drowdown}
       >
         {menu}
