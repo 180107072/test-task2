@@ -45,7 +45,7 @@ export const DropdownMenu = ({
       )}
       <motion.div
         className="absolute flex shadow shadow-black/20 flex-col w-56 h-fit text-sm gap-2 p-2 text-left  bg-dark-400  border-dark-300 border-4 rounded-lg"
-        style={{ top: "10%" }}
+        style={{ top: isMac() ? "2.5rem" : "3.75rem" }}
         variants={drowdown}
       >
         {menu}
