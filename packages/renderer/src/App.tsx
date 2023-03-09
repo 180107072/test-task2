@@ -11,7 +11,8 @@ import {
 } from "./components/icons";
 import { ChannelsList } from "./containers/channels-list";
 
-import { maximize, minimize, close } from "#preload";
+import { maximize, minimize, close, isMac } from "#preload";
+import { Wrapper } from "./layouts/wrapper";
 
 const FakeMessage = () => (
   <>
@@ -60,33 +61,48 @@ const UserControls = () => (
 function App() {
   return (
     <>
-      <div className="h-5 w-full flex justify-end items-center frame bg-dark-400">
-        <button className="hover:bg-dark-200 w-7 h-full leading-3 " onClick={() => minimize()}>&ndash;</button>
-        <button className="hover:bg-dark-200 w-7 h-full leading-4" onClick={() => maximize()}>▢</button>
-        <button className="hover:bg-red-500 w-7 h-full leading-4 mr-0.5" onClick={() => close()}>&#x2715;</button>
-      </div>
-      <div
-        className="h-full w-full  flex bg-dark-400"
-        style={{ height: "calc(100vh - 1.25rem)" }}
-      >
+      {isMac() ? null : (
+        <div className="h-5 w-full flex justify-end items-center frame bg-dark-400">
+          <button
+            className="hover:bg-dark-200 w-7 h-full leading-3 "
+            onClick={() => minimize()}
+          >
+            &ndash;
+          </button>
+          <button
+            className="hover:bg-dark-200 w-7 h-full leading-4"
+            onClick={() => maximize()}
+          >
+            ▢
+          </button>
+          <button
+            className="hover:bg-red-500 w-7 h-full leading-4 mr-0.5"
+            onClick={() => close()}
+          >
+            &#x2715;
+          </button>
+        </div>
+      )}
+      <Wrapper className="h-full w-full flex bg-dark-400">
         <ServersList list={servers} />
 
         <div className="flex flex-col rounded-l-lg w-full ">
           <Navbar />
-          <div className="flex h-full bg-dark-300">
-            <div className="flex flex-col h-full">
-              <Sidebar
-                className="thin-scrollbar"
-                style={{ height: "calc(100vh - 6.75rem)" }}
-              >
-                <ChannelsList />
-              </Sidebar>
+          <div className="flex">
+            <div>
+              <Wrapper navbar auxulary>
+                <Sidebar className="thin-scrollbar" navbar auxulary>
+                  <ChannelsList />
+                </Sidebar>
+              </Wrapper>
               <UserControls />
             </div>
             <div className="w-full h-full pr-1 bg-dark-200">
-              <div
+              <Wrapper
                 className="w-full default-scrollbar py-2 bg-dark-200 flex flex-col flex-1 overflow-y-auto pr-1 overflow-x-hidden whitespace-normal"
-                style={{ height: "calc(100vh - 7.25rem)" }}
+                auxulary
+                navbar
+                additional={0.5}
               >
                 {[...Array(10).keys()]
                   .map((i) => i + 1)
@@ -99,7 +115,7 @@ function App() {
                       <FakeMessage />
                     </div>
                   ))}
-              </div>
+              </Wrapper>
 
               <div className="w-full h-14 bg-dark-200 flex px-2">
                 <div className="w-full flex  items-center h-10 bg-dark-300  rounded-md px-2 text-sm">
@@ -118,7 +134,7 @@ function App() {
                 </div>
               </div>
             </div>
-            <Sidebar className="ml-auto thin-scrollbar mr-0.5">
+            <Sidebar className="ml-auto thin-scrollbar mr-0.5" navbar>
               {[...Array(10).keys()]
                 .map((i) => i + 1)
                 .map((k, i) => {
@@ -143,7 +159,7 @@ function App() {
             </Sidebar>
           </div>
         </div>
-      </div>
+      </Wrapper>
     </>
   );
 }

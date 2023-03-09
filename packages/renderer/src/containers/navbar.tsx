@@ -35,14 +35,16 @@ const ServerNavbar = () => {
       {(close, open, isOpen) => (
         <motion.button
           className="w-full relative h-full flex items-center px-4 text-md bg-dark-300 hover:bg-dark-400/30 transition hover:text-gray-100"
-          onClick={() => (isOpen ? close() : open())}
+          onClick={(e) => {
+            isOpen ? close() : open();
+          }}
         >
           <b>Game center</b>
           <span className="ml-auto">
             {isOpen ? (
-              <CloseIcon className="w-4 h-4" />
+              <CloseIcon className="w-4 h-4 pointer-events-none" />
             ) : (
-              <ArrowIcon className="w-4 h-4 rotate-90" />
+              <ArrowIcon className="w-4 h-4 rotate-90 pointer-events-none" />
             )}
           </span>
         </motion.button>

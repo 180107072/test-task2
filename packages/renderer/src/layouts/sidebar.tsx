@@ -1,6 +1,7 @@
 import { HTMLProps, ReactNode } from "react";
+import { Wrapper, WrapperProps } from "./wrapper";
 
-interface SidebarProps extends HTMLProps<HTMLDivElement> {
+interface SidebarProps extends WrapperProps {
   children?: ReactNode;
 }
 
@@ -11,12 +12,11 @@ export function Sidebar({
   ...props
 }: SidebarProps) {
   return (
-    <div
+    <Wrapper
       {...props}
       className={`w-56 min-w-[14rem] p-2 bg-dark-300 overflow-auto ${className}`}
-      style={{ height: "calc(100vh - 3.75rem)", ...style }}
     >
       {children}
-    </div>
+    </Wrapper>
   );
 }

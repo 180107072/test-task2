@@ -1,6 +1,7 @@
 import { app, BrowserWindow, ipcMain } from "electron";
 import { join } from "node:path";
 import { URL } from "node:url";
+import { platform } from "node:process";
 
 const listeners = (window: BrowserWindow) => {
   ipcMain.handle("window:minimize", () => window.minimize());
@@ -17,7 +18,7 @@ async function createWindow() {
     height: 600,
     minWidth: 900,
     minHeight: 500,
-    frame: false,
+    frame: platform === "darwin",
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
@@ -41,9 +42,9 @@ async function createWindow() {
     import.meta.env.DEV && import.meta.env.VITE_DEV_SERVER_URL !== undefined
       ? import.meta.env.VITE_DEV_SERVER_URL
       : new URL(
-        "../renderer/dist/index.html",
-        "file://" + __dirname
-      ).toString();
+          "../renderer/dist/index.html",
+          "file://" + __dirname
+        ).toString();
 
   await browserWindow.loadURL(pageUrl);
 
